@@ -45,6 +45,15 @@ def Auswertung_Zug(Zug(w1,w2,w3,w4,w5),spielerarrey[]):                     #Ein
         if spielerarrey[p] == -1:
             spielerarrey[p] = s
             bpos = True
+        elif s==0 and b1==False and b2==False and b3==False and b4==False and b5==False:   #Prüfung, ob etwas überschrieben wird
+            print("ungültige Eingabe, da die Bedingungen für die gewählte Kategorie mit den gewürfelten Würfeln nicht übereinstimmt")
+            bstreich = bool(input("Möchten sie ind dieser Kategorie 0Punkte (streichen)?")) #Abfrage Kategorie streichen
+            if bstreich == True:
+                spielerarrey[p] = 0
+                bpos = True
+            else:
+                print("Bitte wählen sie eine andere Kategorie.")
+                return spielerarrey
         else:
             print("Diese Position ist bereits belegt.")
     return spielerarrey                                                     #Rückgabe des aktualisierten Spielerarreys, damit die Punkte in der Hauptschleife weiterverwendet werden können
