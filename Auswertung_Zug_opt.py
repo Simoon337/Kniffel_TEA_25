@@ -13,7 +13,7 @@ strukturiert, besser testbar und vermeidet redundante Logik.
 
 from typing import List
 
-from Kniffel_TEA_25.Maske_Positionen_opt import Maske
+from Maske_Positionen_opt import Maske
 
 pos = [
     "Einer",

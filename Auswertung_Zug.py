@@ -17,7 +17,7 @@
 ### w1,w2,w3,w4,w5: Werte der 5 Würfel
 
 
-from Kniffel_TEA_25.Maske_Positionen import Maske
+from Maske_Positionen import Maske
 
 pos = ["Einer", "Zweier", "Dreier", "Vierer", "Fünfer", "Sexer", "Dreierpasch", "Viererpasch", "FullHouse", "KleineStrasse", "GrosseStrasse", "Kniffel", "Chance"]
 def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, eingabearray: list):                                                                         
