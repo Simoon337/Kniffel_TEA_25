@@ -42,7 +42,7 @@ def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, spielerarray: Li
     Returns:
         Ein Tupel aus (aktualisiertem `spielerarray`, Gesamtpunktzahl für diesen Zug).
     """
-
+    print(w1, w2, w3, w4, w5)
     print("Mögliche Kategorien:", pos)
     print("Aktueller Spielstand:", spielerarray)
 

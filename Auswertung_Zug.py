@@ -22,6 +22,7 @@ from Maske_Positionen import Maske
 pos = ["Einer", "Zweier", "Dreier", "Vierer", "Fünfer", "Sexer", "Dreierpasch", "Viererpasch", "FullHouse", "KleineStrasse", "GrosseStrasse", "Kniffel", "Chance"]
 def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, eingabearray: list):                                                                         
     spielerarray = eingabearray 
+    print(w1, w2, w3, w4, w5)                                                   #Ausgabe der gewürfelten Werte, damit der Spieler sie sehen kann
     print(pos)                                                              #Ausgabe der möglichen Positionen im Spiel
     print(spielerarray)                                                     #Ausgabe des Spielerarreys, damit der Spieler sieht, welche Positionen bereits belegt sind
     p =  int(input("Welche Position soll gewertet werden? (1-13): ")-1)       #Abfrage der Position, die gewertet werden soll
