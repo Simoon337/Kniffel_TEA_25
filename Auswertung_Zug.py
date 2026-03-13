@@ -58,6 +58,17 @@ def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, eingabearray: li
                 return spielerarray
         else:
             print("Diese Position ist bereits belegt.")
+    
+    # Auswertung des Boni
+    bonus = 35 if sum(x for x in spielerarray[:6] if isinstance(x, int)) >= 63 else 0
+    if bonus > 0:
+        print("Du bekommst den Bonus von 35 Punkten!")
+        total += bonus
+        spielerarray[6] = bonus  
+    
+    # Speicher der Gesamtpunktzahl im Spielerarray
+    total = spielerarray[13]
+
     return spielerarray                                                     #Rückgabe des aktualisierten Spielerarreys, damit die Punkte in der Hauptschleife weiterverwendet werden können
 
     

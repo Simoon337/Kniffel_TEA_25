@@ -46,6 +46,7 @@ def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, spielerarray: Li
     print("Mögliche Kategorien:", pos)
     print("Aktueller Spielstand:", spielerarray)
 
+    # Abfrage der Kategorie, die gewertet werden soll
     try:
         p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
     except ValueError:
@@ -60,6 +61,7 @@ def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, spielerarray: Li
         print("Diese Position ist bereits belegt.")
         return spielerarray, 0
 
+    #Auswertung des Zugs mit der Maske
     mask_and_score = Maske(p, w1, w2, w3, w4, w5)
     mask, score = mask_and_score[:5], mask_and_score[5]
 
@@ -78,9 +80,14 @@ def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, spielerarray: Li
 
     spielerarray[p] = total
 
+    # Auswertung des Boni
     bonus = 35 if sum(x for x in spielerarray[:6] if isinstance(x, int)) >= 63 else 0
     if bonus > 0:
         print("Du bekommst den Bonus von 35 Punkten!")
         total += bonus
+        spielerarray[6] = bonus 
+    
+    # Speicher der Gesamtpunktzahl im Spielerarray
+    total = spielerarray[13]
 
-    return spielerarray, total
+    return spielerarray
