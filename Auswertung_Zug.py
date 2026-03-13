@@ -9,7 +9,7 @@
 
 ### Legende Variablen / Arreys (Auswertung_Zug):
 ### pos: Arrey, der die Positionen im Spielerarrey erklährt
-### Srielerarrey: Arrey, in dem die Punkte des aktuellen Spielers gespeichert werden. (-1="noch nicht belegt")
+### Srielerarrey: Arrey, in dem die Punkte des aktuellen Spielers gespeichert werden. (None="noch nicht belegt")
 ### b1,b2,b3,b4,b5: Boolsche Werte, die angeben, ob der jeweilige Würfel gewertet werden soll oder nicht
 ### bpos: Boolsche Variable, die angibt, ob die gewählte Position im Spielerarrey bereits belegt ist oder nicht
 ### p: Variable, in der die gewählte Position im Spielerarrey gespeichert wird
@@ -20,7 +20,7 @@
 from Kniffel_TEA_25.Maske_Positionen import Maske
 
 pos = ["Einer", "Zweier", "Dreier", "Vierer", "Fünfer", "Sexer", "Dreierpasch", "Viererpasch", "FullHouse", "KleineStrasse", "GrosseStrasse", "Kniffel", "Chance"]
-def Auswertung_Zug(Zug(w1,w2,w3,w4,w5),eingabearray[]):                                                                         
+def Auswertung_Zug(Zug(w1: int; w2: int; w3: int; w4: int; w5: int),eingabearray:list):                                                                         
     spielerarray = eingabearray 
     print(pos)                                                              #Ausgabe der möglichen Positionen im Spiel
     print(spielerarray)                                                     #Ausgabe des Spielerarreys, damit der Spieler sieht, welche Positionen bereits belegt sind
@@ -43,7 +43,7 @@ def Auswertung_Zug(Zug(w1,w2,w3,w4,w5),eingabearray[]):
         s = s + w5
     bpos = False                                                       #Prüfung, ob der Spieler die gewählte Position schon belegt hat mit anschließender Belegung
     for bpos in False:
-        if spielerarray[p] == -1:
+        if spielerarray[p] is None:
             spielerarray[p] = s
             bpos = True
         elif s==0 and b1==False and b2==False and b3==False and b4==False and b5==False:   #Prüfung, ob etwas überschrieben wird
