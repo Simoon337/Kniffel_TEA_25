@@ -20,7 +20,7 @@
 from Kniffel_TEA_25.Maske_Positionen import Maske
 
 pos = ["Einer", "Zweier", "Dreier", "Vierer", "Fünfer", "Sexer", "Dreierpasch", "Viererpasch", "FullHouse", "KleineStrasse", "GrosseStrasse", "Kniffel", "Chance"]
-def Auswertung_Zug(Zug(w1: int; w2: int; w3: int; w4: int; w5: int),eingabearray:list):                                                                         
+def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, eingabearray: list):                                                                         
     spielerarray = eingabearray 
     print(pos)                                                              #Ausgabe der möglichen Positionen im Spiel
     print(spielerarray)                                                     #Ausgabe des Spielerarreys, damit der Spieler sieht, welche Positionen bereits belegt sind
