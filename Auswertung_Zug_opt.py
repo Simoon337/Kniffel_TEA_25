@@ -1,0 +1,94 @@
+#############################
+### Auswertung eines Zugs ###
+###    Alexander Hoppe    ###
+###      12.03.2026       ###
+#############################
+
+"""Optimierte Auswertung eines Zuges im Kniffel.
+
+Dieses Modul enthält eine verbesserte Version der Funktion `Auswertung_Zug`.
+Sie nutzt die optimierte Maske aus `Maske_Positionen_opt.py` und ist klarer
+strukturiert, besser testbar und vermeidet redundante Logik.
+"""
+
+from typing import List
+
+from Maske_Positionen_opt import Maske
+
+pos = [
+    "Einer",
+    "Zweier",
+    "Dreier",
+    "Vierer",
+    "Fünfer",
+    "Sexer",
+    "Dreierpasch",
+    "Viererpasch",
+    "FullHouse",
+    "KleineStrasse",
+    "GrosseStrasse",
+    "Kniffel",
+    "Chance",
+]
+
+
+def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> tuple[List[int | None], int]:
+    """Wertet einen Zug aus und trägt die Punkte in das Spieler-Array ein.
+
+    Args:
+        wuerfelarray: Liste mit den fünf Würfelwerten.
+        spielerarray: Liste mit 13 Einträgen; `None` bedeutet "noch nicht belegt".
+
+    Returns:
+        Ein Tupel aus (aktualisiertem `spielerarray`, Gesamtpunktzahl für diesen Zug).
+    """
+    w1, w2, w3, w4, w5 = wuerfelarray
+    print(w1, w2, w3, w4, w5)
+    print("Mögliche Kategorien:", pos)
+    print("Aktueller Spielstand:", spielerarray)
+
+    # Abfrage der Kategorie, die gewertet werden soll
+    try:
+        p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
+    except ValueError:
+        print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
+        return spielerarray, 0
+
+    if not 0 <= p < len(pos):
+        print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
+        return spielerarray, 0
+
+    if spielerarray[p] is not None:
+        print("Diese Position ist bereits belegt.")
+        return spielerarray, 0
+
+    #Auswertung des Zugs mit der Maske
+    mask_and_score = Maske(p, w1, w2, w3, w4, w5)
+    mask, score = mask_and_score[:5], mask_and_score[5]
+
+    dice = [w1, w2, w3, w4, w5]
+    total = score + sum(d for d, m in zip(dice, mask) if m)
+
+    if total == 0 and not any(mask):
+        print("Ungültige Eingabe: Die Würfel passen nicht zur gewählten Kategorie.")
+        bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
+        if bstreich in ("ja", "j", "yes", "y"):
+            spielerarray[p] = 0
+            return spielerarray, total
+        else:
+            print("Bitte wählen Sie eine andere Kategorie.")
+            return spielerarray, 0
+
+    spielerarray[p] = total
+
+    # Auswertung des Boni
+    bonus = 35 if sum(x for x in spielerarray[:6] if isinstance(x, int)) >= 63 else 0
+    if bonus > 0:
+        print("Du bekommst den Bonus von 35 Punkten!")
+        total += bonus
+        spielerarray[6] = bonus 
+    
+    # Speicher der Gesamtpunktzahl im Spielerarray
+    total = spielerarray[13]
+
+    return spielerarray
