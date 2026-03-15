@@ -32,16 +32,17 @@ pos = [
 ]
 
 
-def Auswertung_Zug(w1: int, w2: int, w3: int, w4: int, w5: int, spielerarray: List[int | None]) -> tuple[List[int | None], int]:
+def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> tuple[List[int | None], int]:
     """Wertet einen Zug aus und trägt die Punkte in das Spieler-Array ein.
 
     Args:
-        w1..w5: Die fünf Würfelwerte.
+        wuerfelarray: Liste mit den fünf Würfelwerten.
         spielerarray: Liste mit 13 Einträgen; `None` bedeutet "noch nicht belegt".
 
     Returns:
         Ein Tupel aus (aktualisiertem `spielerarray`, Gesamtpunktzahl für diesen Zug).
     """
+    w1, w2, w3, w4, w5 = wuerfelarray
     print(w1, w2, w3, w4, w5)
     print("Mögliche Kategorien:", pos)
     print("Aktueller Spielstand:", spielerarray)
