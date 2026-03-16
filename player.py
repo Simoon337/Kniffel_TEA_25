@@ -81,53 +81,53 @@ def print_final_score(player_names, score_lists):
         print(" " * space_for_name[i] + player_names[i] + "|", end="")
     print("\nEinser:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][0]) + "|", end="")
     print("\nZweier:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 1]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][1]) + "|", end="")
     print("\nDreier:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 2]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][2]) + "|", end="")
     print("\nVierer:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 3]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][3]) + "|", end="")
     print("\nFünfer:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 4]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][4]) + "|", end="")
     print("\nSechser:     ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 5]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][5]) + "|", end="")
     print("\nBonus:       ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 6]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][6]) + "|", end="")
     print("\nDreierpasch: ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 7]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][7]) + "|", end="")
     print("\nViererpasch: ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 8]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][8]) + "|", end="")
     print("\nFull House:  ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 9]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][9]) + "|", end="")
     print("\nkl. Straße:  ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 10]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][10]) + "|", end="")
     print("\ngr. Straße:  ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 11]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][11]) + "|", end="")
     print("\nKniffel:     ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 12]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][12]) + "|", end="")
     print("\nChance:      ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 13]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][13]) + "|", end="")
     print("\nSumme:       ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[15 * i + 14]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][14]) + "|", end="")
     print()
 
 #Testaufruf der print_final_score Funktion
-#print_final_score(["Jan", "Anna", "Maximilian"], [0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 315, 4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 300, 3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 281])
+#print_final_score(["Jan", "Anna", "Maximilian"], [[0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 315], [4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 300], [3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 281]])
 
 #Wertet den Gewinner oder die Gewinner aus und gibt die Namen der Gewinner und ihre Punktzahl aus
 def winner(player_names, score_lists):
@@ -136,18 +136,18 @@ def winner(player_names, score_lists):
     number_of_winners = 1
 
     for i in range(len(player_names)):                      #Findet die höchste Gesamtpunktzahl und den Index des Gewinners
-        if score_lists[15 * i + 14] > max_score:
-            max_score = score_lists[15 * i + 14]
+        if score_lists[i][14] > max_score:
+            max_score = score_lists[i][14]
             winner_index = i
             number_of_winners = 1
-        elif score_lists[15 * i + 14] == max_score:         #Prüfung, ob es mehrere Gewinner gibt
+        elif score_lists[i][14] == max_score:         #Prüfung, ob es mehrere Gewinner gibt
             number_of_winners += 1
 
     if number_of_winners > 1:                               #Wenn es mehr als einen Gewinner gibt, werden Alle Namen und ihre Punktzahl ausgegeben
         print("Es haben ", end="")
         printed_winners_counter = 0                         #Variable zum zählen, wie viele Gewinner bereits ausgegeben wurden, damit die Namen der Gewinner mit ", " oder " und " getrennt werden können
         for i in range(len(player_names)):
-            if score_lists[15 * i + 14] == max_score:
+            if score_lists[i][14] == max_score:
                 printed_winners_counter += 1
                 print(player_names[i], end="")
                 if printed_winners_counter < number_of_winners - 1:
@@ -159,4 +159,4 @@ def winner(player_names, score_lists):
         print(f"Der Gewinner ist {player_names[winner_index]} mit {max_score} Punkten!")
 
 #Testaufruf der winner Funktion
-#winner(["Jan", "Anna", "Maximilian"], [0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 314, 4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 314, 3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 315])
+#winner(["Jan", "Anna", "Maximilian"], [[0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 314], [4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 314], [3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 315]])
