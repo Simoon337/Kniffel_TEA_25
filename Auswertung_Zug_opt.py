@@ -48,40 +48,41 @@ def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> t
     print("Aktueller Spielstand:", spielerarray)
 
     # Abfrage der Kategorie, die gewertet werden soll
-    pruef = False
-    while not pruef:
-        try:
-            p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
-        except ValueError:
-            print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
-            return spielerarray, 0
+    wertung_erfolgt = False
+    while not wertung_erfolgt:
+        pruef = False
+        while not pruef:
+            try:
+                p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
+            except ValueError:
+                print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
+                return spielerarray, 0
 
-        if not 0 <= p < len(pos):
-            print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
-            return spielerarray, 0
+            if not 0 <= p < len(pos):
+                print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
+                return spielerarray, 0
 
-        if spielerarray[p] is not None:
-            print("Diese Position ist bereits belegt.")
-            return spielerarray, 0
-        else:
-            pruef = True
+            if spielerarray[p] is not None:
+                print("Diese Position ist bereits belegt.")
+                return spielerarray, 0
+            else:
+                pruef = True
 
-    #Auswertung des Zugs mit der Maske
-    mask_and_score = Maske(p, w1, w2, w3, w4, w5)
-    mask, score = mask_and_score[:5], mask_and_score[5]
+        #Auswertung des Zugs mit der Maske
+        mask_and_score = Maske(p, w1, w2, w3, w4, w5)
+        mask, score = mask_and_score[:5], mask_and_score[5]
 
-    dice = [w1, w2, w3, w4, w5]
-    total = score + sum(d for d, m in zip(dice, mask) if m)
+        dice = [w1, w2, w3, w4, w5]
+        total = score + sum(d for d, m in zip(dice, mask) if m)
 
-    if total == 0 and not any(mask):
-        print("Ungültige Eingabe: Die Würfel passen nicht zur gewählten Kategorie.")
-        bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
-        if bstreich in ("ja", "j", "yes", "y"):
-            spielerarray[p] = 0
-            return spielerarray, total
-        else:
-            print("Bitte wählen Sie eine andere Kategorie.")
-            return spielerarray, 0
+        if total == 0 and not any(mask):
+            print("Ungültige Eingabe: Die Würfel passen nicht zur gewählten Kategorie.")
+            bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
+            if bstreich in ("ja", "j", "yes", "y"):
+                spielerarray[p] = 0
+                wertung_erfolgt = True
+            else:
+                print("Bitte wählen Sie eine andere Kategorie.")
 
     spielerarray[p] = total
 
@@ -93,6 +94,6 @@ def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> t
         spielerarray[6] = bonus 
     
     # Speicher der Gesamtpunktzahl im Spielerarray
-    total = spielerarray[13]
+    total = spielerarray[14]
 
     return spielerarray
