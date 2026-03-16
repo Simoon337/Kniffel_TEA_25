@@ -48,19 +48,23 @@ def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> t
     print("Aktueller Spielstand:", spielerarray)
 
     # Abfrage der Kategorie, die gewertet werden soll
-    try:
-        p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
-    except ValueError:
-        print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
-        return spielerarray, 0
+    pruef = False
+    while not pruef:
+        try:
+            p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
+        except ValueError:
+            print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
+            return spielerarray, 0
 
-    if not 0 <= p < len(pos):
-        print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
-        return spielerarray, 0
+        if not 0 <= p < len(pos):
+            print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
+            return spielerarray, 0
 
-    if spielerarray[p] is not None:
-        print("Diese Position ist bereits belegt.")
-        return spielerarray, 0
+        if spielerarray[p] is not None:
+            print("Diese Position ist bereits belegt.")
+            return spielerarray, 0
+        else:
+            pruef = True
 
     #Auswertung des Zugs mit der Maske
     mask_and_score = Maske(p, w1, w2, w3, w4, w5)
