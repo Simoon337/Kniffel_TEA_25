@@ -39,21 +39,21 @@ def convert_to_print(entry_number):
 #Gibt den aktuellen Punktestand eines Spielers aus (nutzt die convert_to_print Funktion)
 def print_score_list(player_name, score_list):
     print(f"Aktueller Punktestand von {player_name}:")
-    print(f"""    Einser:      {convert_to_print(score_list[0])}
-    Zweier:      {convert_to_print(score_list[1])}
-    Dreier:      {convert_to_print(score_list[2])}
-    Vierer:      {convert_to_print(score_list[3])}
-    Fünfer:      {convert_to_print(score_list[4])}
-    Sechser:     {convert_to_print(score_list[5])}
-    Bonus:       {convert_to_print(score_list[6])}
-    Dreierpasch: {convert_to_print(score_list[7])}
-    Viererpasch: {convert_to_print(score_list[8])}
-    Full House:  {convert_to_print(score_list[9])}
-    kl. Straße:  {convert_to_print(score_list[10])}
-    gr. Straße:  {convert_to_print(score_list[11])}
-    Kniffel:     {convert_to_print(score_list[12])}
-    Chance:      {convert_to_print(score_list[13])}
-    Summe:       {convert_to_print(score_list[14])}
+    print(f"""(1)  Einser:      {convert_to_print(score_list[0])}
+(2)  Zweier:      {convert_to_print(score_list[1])}
+(3)  Dreier:      {convert_to_print(score_list[2])}
+(4)  Vierer:      {convert_to_print(score_list[3])}
+(5)  Fünfer:      {convert_to_print(score_list[4])}
+(6)  Sechser:     {convert_to_print(score_list[5])}
+     Bonus:       {convert_to_print(score_list[6])}
+(7)  Dreierpasch: {convert_to_print(score_list[7])}
+(8)  Viererpasch: {convert_to_print(score_list[8])}
+(9)  Full House:  {convert_to_print(score_list[9])}
+(10) kl. Straße:  {convert_to_print(score_list[10])}
+(11) gr. Straße:  {convert_to_print(score_list[11])}
+(12) Kniffel:     {convert_to_print(score_list[12])}
+(13) Chance:      {convert_to_print(score_list[13])}
+     Summe:       {convert_to_print(score_list[14])}
     """)
 
 #Testaufruf der print_score_list Funktion
