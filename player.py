@@ -38,7 +38,7 @@ def convert_to_print(entry_number):
 
 #Gibt den aktuellen Punktestand eines Spielers aus (nutzt die convert_to_print Funktion)
 def print_score_list(player_name, score_list):
-    print(f"Aktueller Punktestand von {player_name}:")
+    print(f"\nAktueller Punktestand von {player_name}:")
     print(f"""(1)  Einser:      {convert_to_print(score_list[0])}
 (2)  Zweier:      {convert_to_print(score_list[1])}
 (3)  Dreier:      {convert_to_print(score_list[2])}
@@ -75,7 +75,7 @@ def print_final_score(player_names, score_lists):
             space_for_number[i] = length_name - 2   #Wenn der Name 10 Zeichen lang oder länger ist, soll die Anzahl der Leerzeichen immer 3 weniger als die Anzahl der Zeichen im (Namen + ein Leerzeichen) sein
             space_for_name[i] = 1
 
-    print("Endpunktestand:")                        #Gibt die Endtabelle mit den Spielernamen und ihren Punkteständen aus
+    print("\nEndpunktestand:")                        #Gibt die Endtabelle mit den Spielernamen und ihren Punkteständen aus
     print("Spieler:     ", end="")
     for i in range(number_of_players):
         print(" " * space_for_name[i] + player_names[i] + "|", end="")
@@ -99,7 +99,7 @@ def print_final_score(player_names, score_lists):
         print(" " * space_for_number[i] + convert_to_print(score_lists[i][5]) + "|", end="")
     print("\nBonus:       ", end="")
     for i in range(number_of_players):
-        print(" " * space_for_number[i] + convert_to_print(score_lists[i][6]) + "|", end="")
+        print(" " * space_for_number[i] + convert_to_print(score_lists[i][6] if score_lists[i][6] is not None else 0) + "|", end="")
     print("\nDreierpasch: ", end="")
     for i in range(number_of_players):
         print(" " * space_for_number[i] + convert_to_print(score_lists[i][7]) + "|", end="")
@@ -127,7 +127,7 @@ def print_final_score(player_names, score_lists):
     print()
 
 #Testaufruf der print_final_score Funktion
-#print_final_score(["Jan", "Anna", "Maximilian"], [[0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 315], [4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 300], [3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 281]])
+#print_final_score(["Jan", "Anna", "Maximilian"], [[0, 6, 5, 12, 5, 18, None, 20, 30, 0, 30, 40, 0, 22, 315], [4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 300], [3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 281]])
 
 #Wertet den Gewinner oder die Gewinner aus und gibt die Namen der Gewinner und ihre Punktzahl aus
 def winner(player_names, score_lists):
@@ -144,7 +144,7 @@ def winner(player_names, score_lists):
             number_of_winners += 1
 
     if number_of_winners > 1:                               #Wenn es mehr als einen Gewinner gibt, werden Alle Namen und ihre Punktzahl ausgegeben
-        print("Es haben ", end="")
+        print("\nEs haben ", end="")
         printed_winners_counter = 0                         #Variable zum zählen, wie viele Gewinner bereits ausgegeben wurden, damit die Namen der Gewinner mit ", " oder " und " getrennt werden können
         for i in range(len(player_names)):
             if score_lists[i][14] == max_score:
@@ -156,7 +156,7 @@ def winner(player_names, score_lists):
                     print(" und ", end="")
         print(f" mit {max_score} Punkten gewonnen!")
     else:                                                   #Wenn es einen Gewinner gibt, wird nur der Name dieses Gewinners und seine Punktzahl ausgegeben
-        print(f"Der Gewinner ist {player_names[winner_index]} mit {max_score} Punkten!")
+        print(f"\nDer Gewinner ist {player_names[winner_index]} mit {max_score} Punkten!")
 
 #Testaufruf der winner Funktion
 #winner(["Jan", "Anna", "Maximilian"], [[0, 6, 5, 12, 5, 18, 0, 20, 30, 0, 30, 40, 0, 22, 314], [4, 2, 9, 8, 10, 30, 35, 18, 24, 0, 25, 35, 0, 20, 314], [3, 4, 0, 16, 25, 30, 35, 0, 0, 25, 30, 40, 50, 26, 315]])

@@ -42,25 +42,25 @@ def roll_dice():
                 if continue_rolling in ["ja", "nein"]:
                     answer_valid = True
                 else:                   
-                    print("Ungültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")  
+                    print("\nUngültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")  
             if continue_rolling == "ja":
                 choice_valid = False
                 keep_dice_list = []
                 while choice_valid == False:
-                    keep_dice = input("Welche Würfel möchtest du behalten? (Gib die Augenzahlen der Würfel ein,\ndie du behalten möchtest, getrennt durch Kommas.\nPro Eingabe wird ein Würfel gehalten): ")
+                    keep_dice = input("\nWelche Würfel möchtest du behalten? (Gib die Augenzahlen der Würfel ein,\ndie du behalten möchtest, getrennt durch Kommas.\nPro Eingabe wird ein Würfel gehalten): ")
                     keep_dice_entries = [x.strip() for x in keep_dice.split(",") if x.strip() != ""] #Formation der Eingabe in eine Liste ohne Lehrzeichen und Kommas
                     if len(keep_dice_entries) > 5:
                         print("Ungültige Eingabe. Du kannst maximal 5 Würfel behalten.")
                         continue
                     elif len(keep_dice_entries) ==5: #Abfrage, ob der Spieler alle 5 Würfel behalten möchte
-                        print(f"Wenn du 5 Würfel behalten möchtest\nwird dein Zug mit deinen aktuellen Würfeln {dices} beendet.")
+                        print(f"\nWenn du 5 Würfel behalten möchtest\nwird dein Zug mit deinen aktuellen Würfeln {dices} beendet.")
                         accepted_answer = False
                         while accepted_answer == False: 
                             accept_keep_all = input("Möchtest du alle 5 Würfel behalten? (ja/nein): ").lower()
                             if accept_keep_all in ["ja", "nein"]:
                                 accepted_answer = True
                             else:
-                                print("Ungültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")
+                                print("\nUngültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")
                         if accept_keep_all == "ja": 
                             turns = 4  # Beendet die Schleife, da der Spieler alle Würfel behalten möchte
                             choice_valid = True
@@ -93,4 +93,4 @@ def roll_dice():
             print("Du hast keine Würfe mehr übrig. Deine aktuellen Würfel werden beibehalten.")
         turns += 1 #Erhöht die Anzahl der Würfe um 1, um den Ablauf der Schleife zu steuern
 
-    return [dices[0], dices[1], dices[2], dices[3], dices[4]] #Rückgabe der finalen Würfelwerte als Liste     
+    return dices #Rückgabe der finalen Würfelwerte als Liste

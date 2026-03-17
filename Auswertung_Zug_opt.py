@@ -12,6 +12,7 @@ strukturiert, besser testbar und vermeidet redundante Logik.
 """
 
 from Maske_Positionen_opt import Maske
+import player
 
 pos = [
     "(1) Einer",
@@ -32,7 +33,7 @@ pos = [
 ]
 
 
-def Auswertung_Zug(wuerfelarray, spielerarray):
+def Auswertung_Zug(wuerfelarray, spielerarray, spielername):
     """Wertet einen Zug aus und trägt die Punkte in das Spieler-Array ein.
 
     Args:
@@ -43,9 +44,10 @@ def Auswertung_Zug(wuerfelarray, spielerarray):
         aktualisierter `spielerarray`
     """
     w1, w2, w3, w4, w5 = wuerfelarray
-    print(w1, w2, w3, w4, w5)
-    print("Mögliche Kategorien:", pos)
-    print("Aktueller Spielstand:", spielerarray)
+    # print(w1, w2, w3, w4, w5)
+    # print("Mögliche Kategorien:", pos)
+    # print("Aktueller Spielstand:", spielerarray)
+    player.print_score_list(spielername, spielerarray)
 
     # Abfrage der Kategorie, die gewertet werden soll
     wertung_erfolgt = False
