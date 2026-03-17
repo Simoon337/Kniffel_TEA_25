@@ -31,7 +31,7 @@ def Maske(p: int, w1: int, w2: int, w3: int, w4: int, w5: int) -> List[object]:
     mask = [False, False, False, False, False]
     score = 0
 
-    if 0 <= p <= 5:  # Einer..Sechser
+    if 1 <= p <= 6:  # Einer..Sechser
         target = p + 1
         mask = [d == target for d in dice]
         return mask + [score]
@@ -48,7 +48,7 @@ def Maske(p: int, w1: int, w2: int, w3: int, w4: int, w5: int) -> List[object]:
             mask = [True] * 5
         return mask + [score]
 
-    if p == 9   :  # FullHouse
+    if p == 9  :  # FullHouse
         if sorted(counts.values()) == [2, 3]:
             score = 25
         return mask + [score]
