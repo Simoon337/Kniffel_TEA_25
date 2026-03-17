@@ -52,7 +52,18 @@ def roll_dice():
                     if len(keep_dice_entries) > 5:
                         print("Ungültige Eingabe. Du kannst maximal 5 Würfel behalten.")
                         continue
-                    elif len(keep_dice_entries) ==5: #Abfrage, ob der Spieler alle 5 Würfel behalten möchte
+                    try: #Umwandlung der Spielereingabe in Ganzzahlen, Fehlermeldung, falls dies nicht möglich ist
+                        keep_dice_list = [int(x) for x in keep_dice_entries]
+                    except ValueError:
+                        print("Ungültige Eingabe. Bitte gib nur Zahlen von 1 bis 6 getrennt durch Kommas ein.")
+                        continue
+                    if not all(1 <= x <= 6 for x in keep_dice_list):
+                        print("Ungültige Eingabe. Bitte gib nur Zahlen von 1 bis 6 ein.")
+                        continue
+                    if not is_keep_valid(keep_dice_list, dices):#Aufrufen der Überprüfungsfunktion
+                        print("Ungültige Eingabe.\nDu hast mehr Würfel einer Zahl behalten als im aktuellen Wurf vorhanden.")
+                        continue
+                    if len(keep_dice_entries) ==5: #Abfrage, ob der Spieler alle 5 Würfel behalten möchte
                         print(f"\nWenn du 5 Würfel behalten möchtest\nwird dein Zug mit deinen aktuellen Würfeln {dices} beendet.")
                         accepted_answer = False
                         while accepted_answer == False: 
@@ -66,17 +77,6 @@ def roll_dice():
                             choice_valid = True
                         else: 
                             continue
-                    try: #Umwandlung der Spielereingabe in Ganzzahlen, Fehlermeldung, falls dies nicht möglich ist
-                        keep_dice_list = [int(x) for x in keep_dice_entries]
-                    except ValueError:
-                        print("Ungültige Eingabe. Bitte gib nur Zahlen von 1 bis 6 getrennt durch Kommas ein.")
-                        continue
-                    if not all(1 <= x <= 6 for x in keep_dice_list):
-                        print("Ungültige Eingabe. Bitte gib nur Zahlen von 1 bis 6 ein.")
-                        continue
-                    if not is_keep_valid(keep_dice_list, dices):#Aufrufen der Überprüfungsfunktion
-                        print("Ungültige Eingabe.\nDu hast mehr Würfel einer Zahl behalten als im aktuellen Wurf vorhanden.")
-                        continue 
                     choice_valid = True 
                 if len(keep_dice_list) == 0 and turns < 4:                  
                     print("Es wird erneut gewürfelt.\nEs wurden keine Würfel gehalten, daher wurden alle Würfel erneut gewürfelt.")
