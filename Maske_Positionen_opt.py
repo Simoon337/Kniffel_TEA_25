@@ -3,8 +3,7 @@
 Dieses Modul enthält eine bereinigte und wartbare Implementierung der
 Positionsmaske (Maske) für Kniffel.
 
-Die Funktion `Maske(p, w1, w2, w3, w4, w5)` liefert eine Liste mit
-5 booleschen Werten (für die Würfel) und einen Punktwert (Score).
+Die Funktion `Maske(p, w1, w2, w3, w4, w5)` liefert einen Punktwert (Score).
 
 Die Semantik entspricht der alten Implementierung in Maske_Positionen.py.
 """
@@ -21,58 +20,50 @@ def Maske(p: int, w1: int, w2: int, w3: int, w4: int, w5: int) -> List[object]:
         w1..w5: Werte der fünf Würfel (1-6).
 
     Returns:
-        [b1, b2, b3, b4, b5, score]
-        - b1..b5: Booleans, welche Würfel gewertet werden.
-        - score: Punktzahl (für manche Kategorien fix, sonst 0 und die Summe
-          wird extern über die Maske berechnet).
+        score: Punkte für die Kategorie p mit den gegebenen Würfeln.
     """
 
     dice = [w1, w2, w3, w4, w5]
     mask = [False, False, False, False, False]
-    score = 0
+    score = None
 
-    if 1 <= p <= 6:  # Einer..Sechser
+    if 0 <= p <= 5:  # Einer..Sechser
         target = p + 1
         mask = [d == target for d in dice]
-        return mask + [score]
 
     counts = Counter(dice)
 
-    if p == 7:  # Dreierpasch
+    if p == 6:  # Dreierpasch
         if any(v >= 3 for v in counts.values()):
             mask = [True] * 5
-        return mask + [score]
 
-    if p == 8:  # Viererpasch
+    if p == 7:  # Viererpasch
         if any(v >= 4 for v in counts.values()):
             mask = [True] * 5
-        return mask + [score]
 
-    if p == 9  :  # FullHouse
+    if p == 8  :  # FullHouse
         if sorted(counts.values()) == [2, 3]:
             score = 25
-        return mask + [score]
 
-    if p == 10:  # Kleine Straße
+    if p == 9:  # Kleine Straße
         if _has_straight(dice, 4):
             score = 30
-        return mask + [score]
 
-    if p == 11:  # Große Straße
+    if p == 10:  # Große Straße
         if _has_straight(dice, 5):
             score = 40
-        return mask + [score]
 
-    if p == 12:  # Kniffel
+    if p == 11:  # Kniffel
         if any(v == 5 for v in counts.values()):
             score = 50
-        return mask + [score]
 
-    if p == 13:  # Chance
+    if p == 12:  # Chance
         mask = [True] * 5
-        return mask + [score]
 
-    return mask + [score]
+    if score is None:  # Für Kategorien ohne festen Score, berechne die Summe der gewerteten Würfel
+        score = sum(d for d, m in zip(dice, mask) if m)
+
+    return score
 
 
 def _has_straight(dice: List[int], length: int) -> bool:

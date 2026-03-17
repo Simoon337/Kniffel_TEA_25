@@ -52,8 +52,8 @@ for i in range(number_of_players):
 for rounds in range(13):
     for current_player in range(number_of_players):
         player.print_score_list(player_names[current_player], score_lists[current_player])
-        print(f"{player_names[current_player]} ist am Zug.")
-        score_lists[current_player] = auswertung.Auswertung_Zug(role_dice.roll_dice(), score_lists[current_player])
+        print(f"{player_names[current_player]} ist am Zug.\n")
+        score_lists[current_player] = auswertung.Auswertung_Zug(role_dice.roll_dice(), score_lists[current_player], player_names[current_player])
 
 player.print_final_score(player_names, score_lists)
 player.winner(player_names, score_lists)
