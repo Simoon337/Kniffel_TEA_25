@@ -1,6 +1,3 @@
-
-
-
 import random #Random wird importiert, um die Augenzahlen der Würfel zufällig zu generieren
 
 # Hier wird die Funktion zur Überprüfung der gehaltenen Würfel auf Gültigkeit definiert
@@ -96,5 +93,4 @@ def roll_dice():
             print("Du hast keine Würfe mehr übrig. Deine aktuellen Würfel werden beibehalten.")
         turns += 1 #Erhöht die Anzahl der Würfe um 1, um den Ablauf der Schleife zu steuern
 
-    print(dices[0], dices[1], dices[2], dices[3], dices[4]) 
     return [dices[0], dices[1], dices[2], dices[3], dices[4]] #Rückgabe der finalen Würfelwerte als Liste     
