@@ -11,8 +11,6 @@ Sie nutzt die optimierte Maske aus `Maske_Positionen_opt.py` und ist klarer
 strukturiert, besser testbar und vermeidet redundante Logik.
 """
 
-from typing import List
-
 from Maske_Positionen_opt import Maske
 
 pos = [
@@ -34,15 +32,15 @@ pos = [
 ]
 
 
-def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> tuple[List[int | None], int]:
+def Auswertung_Zug(wuerfelarray, spielerarray):
     """Wertet einen Zug aus und trägt die Punkte in das Spieler-Array ein.
 
     Args:
         wuerfelarray: Liste mit den fünf Würfelwerten.
-        spielerarray: Liste mit 13 Einträgen; `None` bedeutet "noch nicht belegt".
+        spielerarray: Liste mit 15 Einträgen; `None` bedeutet "noch nicht belegt".
 
     Returns:
-        Ein Tupel aus (aktualisiertem `spielerarray`, Gesamtpunktzahl für diesen Zug).
+        aktualisierter `spielerarray`
     """
     w1, w2, w3, w4, w5 = wuerfelarray
     print(w1, w2, w3, w4, w5)
@@ -52,50 +50,66 @@ def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> t
     # Abfrage der Kategorie, die gewertet werden soll
     wertung_erfolgt = False
     while not wertung_erfolgt:
-        pruef = False
-        while not pruef:
+        available_input = False
+        while not available_input:
             try:
                 p = int(input("Welche Position soll gewertet werden? (1-13): ")) - 1
             except ValueError:
                 print("Ungültige Eingabe: Bitte eine Zahl von 1 bis 13 eingeben.")
-                return spielerarray, 0
+                continue
 
-            if not 0 <= p < len(pos):
-                print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
-                return spielerarray, 0
-
-            if spielerarray[p] is not None:
-                print("Diese Position ist bereits belegt.")
-                return spielerarray, 0
+            if  0 <= p <= 12:
+                if p <= 5:
+                    if spielerarray[p] is not None:
+                        print("Diese Position ist bereits belegt.")
+                    else:
+                        available_input = True
+                else:
+                    if spielerarray[p + 1] is not None:
+                        print("Diese Position ist bereits belegt.")
+                    else:
+                        available_input = True
             else:
-                pruef = True
+                print("Ungültige Position: Bitte eine Zahl von 1 bis 13 wählen.")
+
+
 
         #Auswertung des Zugs mit der Maske
-        mask_and_score = Maske(p, w1, w2, w3, w4, w5)
-        mask, score = mask_and_score[:5], mask_and_score[5]
+        score = Maske(p, w1, w2, w3, w4, w5)
 
-        dice = [w1, w2, w3, w4, w5]
-        total = score + sum(d for d, m in zip(dice, mask) if m)
 
-        if total == 0 and not any(mask):
+        if score == 0:
             print("Ungültige Eingabe: Die Würfel passen nicht zur gewählten Kategorie.")
             bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
             if bstreich in ("ja", "j", "yes", "y"):
-                spielerarray[p] = 0
+                if p <= 5:
+                    spielerarray[p] = 0
+                else:
+                    spielerarray[p + 1] = 0
                 wertung_erfolgt = True
             else:
                 print("Bitte wählen Sie eine andere Kategorie.")
+        else:
+            wertung_erfolgt = True
 
-    spielerarray[p] = total
+    if p <= 5:
+        spielerarray[p] = score
+    else:
+        spielerarray[p + 1 ] = score
+    
+    try:
+        total_score = spielerarray[14] + score
+    except TypeError:
+        total_score = score
 
     # Auswertung des Boni
     bonus = 35 if sum(x for x in spielerarray[:6] if isinstance(x, int)) >= 63 else 0
-    if bonus > 0:
+    if bonus > 0 and spielerarray[6] is None:
         print("Du bekommst den Bonus von 35 Punkten!")
-        total += bonus
+        total_score += bonus
         spielerarray[6] = bonus 
     
     # Speicher der Gesamtpunktzahl im Spielerarray
-    total = spielerarray[14]
+    spielerarray[14] = total_score
 
     return spielerarray
