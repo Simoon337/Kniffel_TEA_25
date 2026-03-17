@@ -16,19 +16,21 @@ from typing import List
 from Maske_Positionen_opt import Maske
 
 pos = [
-    "Einer",
-    "Zweier",
-    "Dreier",
-    "Vierer",
-    "Fünfer",
-    "Sexer",
-    "Dreierpasch",
-    "Viererpasch",
-    "FullHouse",
-    "KleineStrasse",
-    "GrosseStrasse",
-    "Kniffel",
-    "Chance",
+    "(1) Einer",
+    "(2) Zweier",
+    "(3) Dreier",
+    "(4) Vierer",
+    "(5) Fünfer",
+    "(6) Sechser",
+    "    Bonus",
+    "(7) Dreierpasch",
+    "(8) Viererpasch",
+    "(9) FullHouse",
+    "(10)Kleine Straße",
+    "(11)Große Straße",
+    "(12)Kniffel",
+    "(13)Chance",
+    "    Summe",
 ]
 
 
