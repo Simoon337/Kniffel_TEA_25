@@ -1,11 +1,3 @@
-#############################
-### Auswertung eines Zugs ###
-###    Alexander Hoppe    ###
-###      12.03.2026       ###
-#############################
-
-#Bearbeitet am 17.03.2026 von Tobias Burgmaier
-
 """Optimierte Auswertung eines Zuges im Kniffel.
 
 Dieses Modul enthält eine verbesserte Version der Funktion `Auswertung_Zug`.
@@ -46,9 +38,6 @@ def Auswertung_Zug(wuerfelarray, spielerarray, spielername):
         aktualisierter `spielerarray`
     """
     w1, w2, w3, w4, w5 = wuerfelarray
-    # print(w1, w2, w3, w4, w5)
-    # print("Mögliche Kategorien:", pos)
-    # print("Aktueller Spielstand:", spielerarray)
     player.print_score_list(spielername, spielerarray)
 
     # Abfrage der Kategorie, die gewertet werden soll
