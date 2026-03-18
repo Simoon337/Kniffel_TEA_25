@@ -39,11 +39,11 @@ def roll_dice():
             continue_rolling = ""
             while answer_valid == False:  #Wiederholte Abfrage, ob der Spieler erneut würfeln möchte, bis eine gültige Antwort gegeben wird
                 continue_rolling = input("Möchtest du noch einmal würfeln? (ja/nein): ").lower()
-                if continue_rolling in ["ja", "nein"]:
+                if continue_rolling in ["ja", "nein", "n", "j", "yes", "y", "no"]:
                     answer_valid = True
                 else:                   
                     print("\nUngültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")  
-            if continue_rolling == "ja":
+            if continue_rolling in ["ja", "j", "yes", "y"]:
                 choice_valid = False
                 keep_dice_list = []
                 while choice_valid == False:
@@ -68,11 +68,11 @@ def roll_dice():
                         accepted_answer = False
                         while accepted_answer == False: 
                             accept_keep_all = input("Möchtest du alle 5 Würfel behalten? (ja/nein): ").lower()
-                            if accept_keep_all in ["ja", "nein"]:
+                            if accept_keep_all in ["ja", "nein", "j", "n", "yes", "y", "no"]:
                                 accepted_answer = True
                             else:
                                 print("\nUngültige Eingabe. Bitte gib 'ja' oder 'nein' ein.")
-                        if accept_keep_all == "ja": 
+                        if accept_keep_all in ["ja", "j", "yes", "y"]:
                             turns = 4  # Beendet die Schleife, da der Spieler alle Würfel behalten möchte
                             choice_valid = True
                         else: 

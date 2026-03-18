@@ -85,7 +85,7 @@ def Auswertung_Zug(wuerfelarray, spielerarray, spielername):
         if score == 0:
             print("\nDie Würfel passen nicht zur gewählten Kategorie.")
             while True:
-                bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
+                bstreich = input("Möchtest du in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
                 if bstreich in ("ja", "j", "yes", "y"):
                     if p <= 5:
                         spielerarray[p] = 0
@@ -94,7 +94,7 @@ def Auswertung_Zug(wuerfelarray, spielerarray, spielername):
                     wertung_erfolgt = True
                     break
                 elif bstreich in ("nein", "n", "no"):
-                    print("\nBitte wählen Sie eine andere Kategorie.")
+                    print("\nBitte wähle eine andere Kategorie.")
                     break
                 else:
                     print("\nUngültige Eingabe: Bitte mit 'ja' oder 'nein' antworten.")
