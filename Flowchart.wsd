@@ -1,0 +1,27 @@
+@startuml Flowchart
+' Activity diagram for Kniffel program flow
+!define RECTANGLE class
+start -> Starte kniffel.py -> player.greet_players() ->number_of_players = player.get_number_of_players();
+if (Spielerzahl gültig?) then (ja)
+  -> player_names.append(player.get_player_name(i+1));
+  while (i < number_of_players)
+    ->nexten Spielername abfragen;
+    i++
+  endwhile
+else (nein)
+  ->Fehlermeldung ausgeben und erneut fragen;
+  -[#red]->
+endif
+repeat
+  ->for rounds in range(13);
+  ->for current_player in range(number_of_players);
+  ->player.print_score_list(player_names[current_player], score_lists[current_player]);
+  ->dice = role_dice.roll_dice();
+  ->score_lists[current_player] = auswertung.Auswertung_Zug(dice, score_lists[current_player], player_names[current_player]);
+repeat while (rounds < 13)
+
+->player.print_final_score(player_names, score_lists);
+->player.winner(player_names, score_lists);
+stop
+@enduml
+
