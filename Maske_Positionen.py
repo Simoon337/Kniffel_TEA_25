@@ -1,9 +1,3 @@
-######################################
-### Maske der einzelnen Positionen ###
-###         Alexander Hoppe        ###
-###           12.03.2026           ###
-######################################
-
 #In diesem Skript werden die unterschiedlichen Positionsmasken im Spiel für die Auswertung definiert.
 
 def Maske(p,w1,w2,w3,w4,w5):

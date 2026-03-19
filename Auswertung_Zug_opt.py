@@ -1,8 +1,3 @@
-#############################
-### Auswertung eines Zugs ###
-###    Alexander Hoppe    ###
-###      12.03.2026       ###
-#############################
 
 """Optimierte Auswertung eines Zuges im Kniffel.
 
@@ -79,12 +74,12 @@ def Auswertung_Zug(wuerfelarray: List[int], spielerarray: List[int | None]) -> t
 
         if total == 0 and not any(mask):
             print("Ungültige Eingabe: Die Würfel passen nicht zur gewählten Kategorie.")
-            bstreich = input("Möchten Sie in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
+            bstreich = input("Möchtest du in dieser Kategorie 0 Punkte eintragen (ja/nein)? ").strip().lower()
             if bstreich in ("ja", "j", "yes", "y"):
                 spielerarray[p] = 0
                 wertung_erfolgt = True
             else:
-                print("Bitte wählen Sie eine andere Kategorie.")
+                print("Bitte wähle eine andere Kategorie.")
 
     spielerarray[p] = total
 

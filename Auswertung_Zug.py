@@ -1,8 +1,4 @@
-#############################
-### Auswertung eines Zugs ###
-###    Alexander Hoppe    ###
-###      12.03.2026       ###
-#############################
+
 
 ### In diesem Skript wird eine Funktion definiert, die einen einzelnen Zug auswertet.
 ### Diese Funktion nutzt die Funktion Zug, um die entgültigen Würfelkonstelationen auszuwerten und einem Spieler zuzuordnen.
